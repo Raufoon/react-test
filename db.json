@@ -1,0 +1,24 @@
+{
+  "posts": {
+    "p1": {
+      "title": "Post A",
+      "details": "AAAAAAAAAAAA AAAAAAAAAAAA AAAAAAAAAAAAAA"
+    },
+    "p2": {
+      "title": "Post B",
+      "details": "BBBBBBBBB BBBBBBBBBBBBB BBBBBBBBBBBBB"
+    },
+    "p3": {
+      "title": "Post C",
+      "details": "CCCCCCCC CCCCCCCCCCC CCCCCCCCCCC"
+    },
+    "p4": {
+      "title": "Post D",
+      "details": "DDDDDDDD DDDDDDDDDDD DDDDDDDDDDDDDDD"
+    },
+    "p5": {
+      "title": "Post E",
+      "details": "EEEEEEEEEEEE EEEEEEEEEEE EEEEEEEEEEEE"
+    }
+  }
+}
