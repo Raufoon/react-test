@@ -20,13 +20,18 @@ class Posts extends React.Component {
 
     return (
       <div>
-        {
-          postList.map(post => (
-            <NavLink key={post.id} to={`/posts/${post.id}`}>
-              {post.title}<br/>
-            </NavLink>
-          ))
-        }
+        <div className={'float-left'}>
+          {
+            postList.map(post => (
+              <NavLink
+                className="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4"
+                key={post.id}
+                to={`/posts/${post.id}`}>
+                {post.title}
+              </NavLink>
+            ))
+          }
+        </div>
         {
           postList.length > 0
           && openedPostId

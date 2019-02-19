@@ -82,6 +82,7 @@ class PostCreationForm extends React.Component {
 
   render() {
     const hasError = Object.values(this.state.errors).some(flag => !!flag);
+    // TODO: make a separate form field component
     return (
       <form method={'post'} onSubmit={this.onSubmit}>
         <div>

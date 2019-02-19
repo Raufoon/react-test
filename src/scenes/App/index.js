@@ -21,10 +21,17 @@ class App extends Component {
 
     return (
       <div>
-        <nav>
-          <NavLink to={allPostUrl}>Posts</NavLink>
-          <NavLink to={'/create'}>New</NavLink>
+        <nav className='.float-left'>
+          <NavLink
+            activeStyle={{backgroundColor: 'lightgray'}}
+            className={'bg-blue hover:bg-blue-dark text-white py-2 px-4 rounded'}
+            to={allPostUrl}>Posts</NavLink>
+          <NavLink
+            activeStyle={{backgroundColor: 'lightgray'}}
+            className={'bg-blue hover:bg-blue-dark text-white py-2 px-4 rounded'}
+            to={'/create'}>New</NavLink>
         </nav>
+        <br/>
         <Switch>
           <Route exact path={'/create'} component={PostCreationForm}/>
           <Route exact path={'/posts/:id?'} component={Posts}/>
