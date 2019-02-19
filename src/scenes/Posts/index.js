@@ -6,42 +6,36 @@ import PostDetails from "./components/PostDetails";
 import {actionPostOpened} from "./services/postsActions";
 
 
-class Posts extends React.Component {
-  componentDidMount() {
-    const openedPostId = this.props.match.params.id;
-    if (openedPostId) {
-      this.props.dispatch(actionPostOpened(openedPostId))
-    }
+const Posts = props => {
+  const postList = dtoToList(props.posts);
+  const openedPostId = props.match.params.id;
+  if (openedPostId) {
+    props.dispatch(actionPostOpened(openedPostId))
   }
 
-  render() {
-    const postList = dtoToList(this.props.posts);
-    const openedPostId = this.props.match.params.id;
-
-    return (
-      <div>
-        <div className={'float-left'}>
-          {
-            postList.map(post => (
-              <NavLink
-                className="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4"
-                key={post.id}
-                to={`/posts/${post.id}`}>
-                {post.title}
-              </NavLink>
-            ))
-          }
-        </div>
-        <br/>
+  return (
+    <div>
+      <div className={'float-left'}>
         {
-          postList.length > 0
-          && openedPostId
-          && <PostDetails {...this.props.posts[openedPostId]}/>
+          postList.map(post => (
+            <NavLink
+              className="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4"
+              key={post.id}
+              to={`/posts/${post.id}`}>
+              {post.title}
+            </NavLink>
+          ))
         }
       </div>
-    )
-  }
-}
+      <br/>
+      {
+        postList.length > 0
+        && openedPostId
+        && <PostDetails {...props.posts[openedPostId]}/>
+      }
+    </div>
+  )
+};
 
 
 const stateToProps = state => ({
