@@ -6,7 +6,7 @@ import PostDetails from "./components/PostDetails";
 
 
 const Posts = props => {
-  const pid = props.match.params.id;
+  const pid = props.match.params.id; // TODO: preserve this in redux
   const postList = dtoToList(props.posts);
   return (
     <div>
