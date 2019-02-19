@@ -1,4 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {actionCreatePosts} from "./services/postCreationActions";
+import {createNewId} from "./services/utils";
 
 
 class PostCreationForm extends React.Component {
@@ -55,7 +59,16 @@ class PostCreationForm extends React.Component {
   }
 
   onSubmit(event) {
+    let fallbackUrl = '/posts';
+
     event.preventDefault();
+    this.props.dispatch(actionCreatePosts(
+      createNewId(),
+      this.state.fields.title,
+      this.state.fields.body,
+    ));
+
+    // this.props.history.push(fallbackUrl);
   }
 
   render() {
@@ -94,4 +107,4 @@ class PostCreationForm extends React.Component {
   }
 }
 
-export default PostCreationForm
+export default withRouter(connect()(PostCreationForm))
