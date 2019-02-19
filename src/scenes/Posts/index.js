@@ -1,11 +1,29 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from "react-router-dom";
+import {withRouter, NavLink} from "react-router-dom";
+import {dtoToList} from "./services/utils";
+import PostDetails from "./components/PostDetails";
 
 
 const Posts = props => {
-  const id = props.match.params.id;
-  return <div>{JSON.stringify(props.posts)}</div>
+  const pid = props.match.params.id;
+  const postList = dtoToList(props.posts);
+  return (
+    <div>
+      {
+        postList.map(post => (
+          <NavLink key={post.id} to={`/posts/${post.id}`}>
+            {post.title}<br/>
+          </NavLink>
+        ))
+      }
+      {
+        postList.length > 0
+        && pid
+        && <PostDetails {...props.posts[pid]}/>
+      }
+    </div>
+  )
 };
 
 

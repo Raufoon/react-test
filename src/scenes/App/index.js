@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, Route} from 'react-router-dom';
+import {NavLink, Route, Switch, withRouter} from 'react-router-dom';
 import PostCreationForm from "../PostCreationForm";
 import Posts from "../Posts";
 import {connect} from 'react-redux';
@@ -15,13 +15,13 @@ class App extends Component {
     return (
       <div>
         <nav>
-          <Link to={'/posts'}>Posts</Link>
-          <Link to={'/create'}>New</Link>
+          <NavLink to={'/posts'}>Posts</NavLink>
+          <NavLink to={'/create'}>New</NavLink>
         </nav>
-        <main>
+        <Switch>
           <Route exact path={'/create'} component={PostCreationForm}/>
           <Route exact path={'/posts/:id?'} component={Posts}/>
-        </main>
+        </Switch>
       </div>
     );
   }
@@ -31,4 +31,6 @@ const dispatchToProps = dispatch => ({
   fetchAllPosts: () => dispatch(actionFetchAllPosts())
 });
 
-export default connect(null, dispatchToProps)(App);
+export default withRouter(
+  connect(null, dispatchToProps)(App)
+);
