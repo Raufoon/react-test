@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
-class Index extends Component {
+
+class App extends Component {
   render() {
     return (
       <div >
@@ -10,4 +12,5 @@ class Index extends Component {
   }
 }
 
-export default Index;
+const s2p = state => state;
+export default connect(s2p)(App);
