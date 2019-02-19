@@ -14,3 +14,9 @@ export const actionFetchAllPostSuccess = postsDTO => (
     postsDTO
   }
 );
+
+export const ACTION_POST_OPENED = 'ACTION_POST_OPENED';
+export const actionPostOpened = openedPostId => ({
+  type: ACTION_POST_OPENED,
+  openedPostId
+});

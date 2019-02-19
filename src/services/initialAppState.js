@@ -2,6 +2,7 @@ const initialAppState = {
   posts: {
 
   },
+  openedPostId: undefined,
   status: {
     hasError: false,
     errorMsg: '',

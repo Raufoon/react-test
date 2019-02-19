@@ -14,6 +14,9 @@ class PostCreationForm extends React.Component {
         title: '',
         body: ''
       },
+      pristine: {
+        title: true,
+      },
       errors: {
         title: true,
         body: false
@@ -54,12 +57,15 @@ class PostCreationForm extends React.Component {
 
     this.setState({
       fields,
-      errors
+      errors,
+      pristine: {
+        title: false,
+      }
     })
   }
 
   onSubmit(event) {
-    let fallbackUrl = '/posts';
+    let fallbackUrl = '/posts', openedPostId=this.props.openedPostId;
 
     event.preventDefault();
     this.props.dispatch(actionCreatePosts(
@@ -68,7 +74,10 @@ class PostCreationForm extends React.Component {
       this.state.fields.body,
     ));
 
-    // this.props.history.push(fallbackUrl);
+    if (openedPostId) {
+      fallbackUrl += '/' + openedPostId;
+    }
+    this.props.history.push(fallbackUrl);
   }
 
   render() {
@@ -83,7 +92,9 @@ class PostCreationForm extends React.Component {
                  onChange={this.onChange}
           />
           {
-            this.state.errors.title && <span>{this.errorMsg.title}</span>
+            !this.state.pristine.title
+            && this.state.errors.title
+            && <span>{this.errorMsg.title}</span>
           }
         </div>
         <br/>
@@ -107,4 +118,10 @@ class PostCreationForm extends React.Component {
   }
 }
 
-export default withRouter(connect()(PostCreationForm))
+const stateToProps = state => ({
+  openedPostId: state.openedPostId
+});
+
+export default withRouter(
+  connect(stateToProps)(PostCreationForm)
+)

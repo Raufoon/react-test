@@ -12,10 +12,17 @@ class App extends Component {
   }
 
   render() {
+    const openedPostId = this.props.openedPostId;
+
+    let allPostUrl = '/posts';
+    if (openedPostId) {
+      allPostUrl += openedPostId;
+    }
+
     return (
       <div>
         <nav>
-          <NavLink to={'/posts'}>Posts</NavLink>
+          <NavLink to={allPostUrl}>Posts</NavLink>
           <NavLink to={'/create'}>New</NavLink>
         </nav>
         <Switch>
@@ -27,10 +34,14 @@ class App extends Component {
   }
 }
 
+const stateToProps = state => ({
+  openedPostId: state.openedPostId
+});
+
 const dispatchToProps = dispatch => ({
   fetchAllPosts: () => dispatch(actionFetchAllPosts())
 });
 
 export default withRouter(
-  connect(null, dispatchToProps)(App)
+  connect(stateToProps, dispatchToProps)(App)
 );
