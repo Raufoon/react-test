@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
 import PostCreationForm from "../PostCreationForm";
 import Posts from "../Posts";
+import {connect} from 'react-redux';
+import {actionFetchAllPosts} from "../Posts/services/postsActions";
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchAllPosts();
+  }
+
   render() {
     return (
       <div>
@@ -21,4 +27,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const dispatchToProps = dispatch => ({
+  fetchAllPosts: () => dispatch(actionFetchAllPosts())
+});
+
+export default connect(null, dispatchToProps)(App);
