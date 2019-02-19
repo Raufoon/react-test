@@ -32,6 +32,7 @@ class App extends Component {
             to={'/create'}>New</NavLink>
         </nav>
         <br/>
+        <br/>
         <Switch>
           <Route exact path={'/create'} component={PostCreationForm}/>
           <Route exact path={'/posts/:id?'} component={Posts}/>

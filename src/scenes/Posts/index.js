@@ -32,6 +32,7 @@ class Posts extends React.Component {
             ))
           }
         </div>
+        <br/>
         {
           postList.length > 0
           && openedPostId
